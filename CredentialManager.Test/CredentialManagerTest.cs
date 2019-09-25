@@ -1,12 +1,12 @@
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AdysTech.CredentialManager;
 using System.Net;
 using System.Diagnostics;
+using NUnit.Framework;
 
 namespace CredentialManagerTest
 {
-    [TestClass]
+    [TestFixture]
     public class CredentialManagerTest
     {
         private const string uName = "ZYYM3ufm3kFY9ZJZUAqYFQfzxcRc9rzdYxUwqEhBqqdrHttrh";
@@ -14,7 +14,7 @@ namespace CredentialManagerTest
         private const string domain = "AdysTech.com";
 
 
-        [TestMethod, TestCategory("AppVeyor")]
+        [Test, Category("AppVeyor")]
         public void TestSaveCredentials()
         {
             try
@@ -31,7 +31,7 @@ namespace CredentialManagerTest
         }
 
 
-        [TestMethod, TestCategory("AppVeyor")]
+        [Test, Category("AppVeyor")]
         public void TestGetCredentials()
         {
 
@@ -49,7 +49,7 @@ namespace CredentialManagerTest
             }
         }
 
-        [TestMethod, TestCategory("AppVeyor")]
+        [Test, Category("AppVeyor")]
         public void TestEnumerateCredentials()
         {
             try
@@ -85,7 +85,7 @@ namespace CredentialManagerTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void TestPromptForCredentials()
         {
 
@@ -106,7 +106,7 @@ namespace CredentialManagerTest
         /// <summary>
         /// Not working as Console window can't be seen during test
         /// </summary>
-        //[TestMethod]
+        //[Test]
         // public void TestPromptForCredentialsConsole()
         // {
 
@@ -124,7 +124,7 @@ namespace CredentialManagerTest
         //     }
         // }
 
-        [TestMethod]
+        [Test]
         public void IntegrationTest()
         {
 
@@ -154,7 +154,7 @@ namespace CredentialManagerTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void IntegrationTest_with_prefilled_username()
         {
             try
@@ -205,7 +205,7 @@ namespace CredentialManagerTest
         }
 
 
-        [TestMethod, TestCategory("AppVeyor")]
+        [Test, Category("AppVeyor")]
         public void TestGetCredentials_NullUserName()
         {
             var cred = new NetworkCredential(string.Empty, "P@$$w0rd");
@@ -214,7 +214,7 @@ namespace CredentialManagerTest
             Assert.IsTrue(cred1.UserName == cred.UserName && cred1.Password== cred.Password && cred1.Domain == cred.Domain, "Saved and retreived data doesn't match");
         }
 
-        [TestMethod, TestCategory("AppVeyor")]
+        [Test, Category("AppVeyor")]
         public void Test_ParseUserName_supports_long_name()
         {
             var longUserName = "ksdqkdbkbqskdbqskdqsdsqdqsdjsqdjqsdjlqsjd@domain.com";
@@ -226,7 +226,7 @@ namespace CredentialManagerTest
             Assert.AreEqual("", domain);
         }
 
-        [TestMethod, TestCategory("AppVeyor")]
+        [Test, Category("AppVeyor")]
         public void Test_ParseUserName_returns_false_if_buffer_is_too_small()
         {
             var longUserName = "ksdqkdbkbqskdbqskdqsdsqdqsdjsqdjqsdjlqsjd@domain.com";
@@ -237,7 +237,7 @@ namespace CredentialManagerTest
             Assert.AreEqual("", domain);
         }
 
-        [TestMethod, TestCategory("AppVeyor")]
+        [Test, Category("AppVeyor")]
         public void Test_ParseUserName_supports_domain_name()
         {
             string user;
